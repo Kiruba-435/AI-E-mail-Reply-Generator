@@ -32,9 +32,11 @@ def editable_output(reply):
     st.markdown("<h4 style='color:#2e7dff;'>🧠 AI Generated Reply (Editable)</h4>", unsafe_allow_html=True)
     edited = st.text_area("", value=reply, height=200)
     st.markdown("<br>", unsafe_allow_html=True)
-    copy_code = f"""
-    <button onclick=\"navigator.clipboard.writeText('{edited.replace("'", "\\'").replace('\\n', '\\n')}')\" style='background:#2e7dff;color:white;font-weight:bold;border:none;padding:8px 16px;border-radius:5px;cursor:pointer;'>📋 Copy Reply</button>
-    """
+    safe_reply = edited.replace("'", "\\'").replace("\n", "\\n")
+    copy_code = (
+        f'<button onclick="navigator.clipboard.writeText(\'{safe_reply}\')" '
+        "style='background:#2e7dff;color:white;font-weight:bold;border:none;padding:8px 16px;border-radius:5px;cursor:pointer;'>📋 Copy Reply</button>"
+    )
     st.markdown(copy_code, unsafe_allow_html=True)
     return edited
 
