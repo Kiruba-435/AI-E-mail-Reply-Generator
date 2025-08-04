@@ -1,7 +1,7 @@
 import streamlit as st
-from ui import main_ui, editable_output, feedback_form, show_feedback
-from reply_generator import generate_reply
-from feedback_manager import save_feedback
+from app.ui import main_ui, editable_output, feedback_form, show_feedback
+from app.reply_generator import generate_reply
+from app.feedback_manager import save_feedback
 
 def main():
     email, tone, intent, generate = main_ui()
